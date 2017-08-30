@@ -2,6 +2,7 @@
 # Compile:by-lanse    2018-08-31
 LOGTIME=$(date "+%m-%d %H:%M:%S")
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
+username=`nvram get http_username`
 
 echo -e -n "\033[41;37m 开始构建去广告平台......\033[0m\n"
 sleep 3
