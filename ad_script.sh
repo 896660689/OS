@@ -3,6 +3,8 @@
 LOGTIME=$(date "+%m-%d %H:%M:%S")
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 
+echo -e -n "\033[41;37m 开始构建去广告平台......\033[0m\n"
+sleep 3
 if [ ! -d "/etc/storage/dnsmasq.d/hosts" ]; then
 	echo -e "\e[1;36m 创建广告规则文件夹 \e[0m\n"
 	mkdir -p -m 755 /etc/storage/dnsmasq.d/hosts
