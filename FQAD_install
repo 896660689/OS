@@ -79,7 +79,7 @@ if [ "$Function_options" == "3" ]; then
 
 	if [ -f "/usr/sbin/dnsmasq" ]; then
 		echo -e "\e[1;31m 重启 dnsmasq \e[0m\n"
-		restart_dhcpd && /usr/sbin/dnsmasq restart >/dev/null 2>&1
+		restart_dhcpd;/usr/sbin/dnsmasq restart >/dev/null 2>&1
 	fi
 
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
@@ -123,7 +123,7 @@ if [ "$Function_options" == "6" ]; then
 
 	if [ -f "/usr/sbin/dnsmasq" ]; then
 		echo -e "\e[1;31m 重启 dnsmasq \e[0m\n"
-		restart_dhcpd && /usr/sbin/dnsmasq restart >/dev/null 2>&1
+		restart_dhcpd;/usr/sbin/dnsmasq restart >/dev/null 2>&1
 	fi
 
 	[ -f "/tmp/ad_script.sh" ] && rm -f /tmp/ad_script.sh
