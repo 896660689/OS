@@ -1,0 +1,27 @@
+#!/bin/sh
+# Compile:by-lanse    2018-08-31
+
+echo -e "\e[1;36m 下载 'winhelp200''adblock' 屏蔽广告规则 \e[0m\n"
+TMP_AD=/tmp/tmp_ad
+TMP_AD2=/tmp/tmp_ad2
+AD=/tmp/ad
+
+[ -f ${AD} ] && rm -rf ${AD};[ -f ${TMP_AD2} ] && rm -rf ${TMP_AD2}
+for URL in \
+	"http://winhelp2002.mvps.org/hosts.txt" \
+	"http://c.nnjsx.cn/GL/dnsmasq/update/adblock/yhosts.txt"
+do
+	wget -t 15 -T 50 --no-check-certificate -O- "${URL}" \
+	| sed -E -e "s/#.*$//" -e "/^$/d" -e "/::/d" -e "/localhos/d" -e "s/0.0.0.0/127.0.0.1/" -e "s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD}
+done
+
+wget -t 15 -T 50 --no-check-certificate -O- https://raw.githubusercontent.com/vokins/yhosts/master/hosts \
+| sed -E -e "s/#.*$//" -e "/^$/d" -e "/::/d" -e "/localhos/d" -e "s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD2}
+
+cat ${TMP_AD} ${TMP_AD2} > ${AD}
+#sort -n ${TMP_AD} |uniq >> ${AD}
+
+sleep 2
+echo -e "\033[45;37m 'Hosts_Ad' 规则下载完成 \033[0m\n"
+# 删除临时缓存
+rm -rf ${TMP_AD} ${TMP_AD2} 2> /dev/null
