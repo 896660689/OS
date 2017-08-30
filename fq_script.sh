@@ -26,8 +26,8 @@ chmod 644 /etc/storage/dnsmasq.d/userlist
 
 if [ -d "/etc/storage/dnsmasq.d" ]; then
 	echo -e "\e[1;33m 创建更新脚本 \e[0m\n"
-	wget --no-check-certificate -t 30 -T 60 https://raw.githubusercontent.com/896660689/os/master/tmp_fq_up -qO /tmp/tmp_fq_up
-	mv -f /tmp/tmp_fq_up /etc/storage/dnsmasq.d/fq_update.sh && sleep 3
+	wget --no-check-certificate -t 30 -T 60 https://raw.githubusercontent.com/896660689/os/master/fq_update.sh -qO /tmp/fq_update.sh
+	mv -f /tmp/fq_update.sh /etc/storage/dnsmasq.d/fq_update.sh && sleep 3
 	chmod 755 /etc/storage/dnsmasq.d/fq_update.sh
 fi
 
