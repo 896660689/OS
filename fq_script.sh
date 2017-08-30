@@ -10,8 +10,7 @@ if [ ! -d "/etc/storage/dnsmasq.d/conf" ]; then
 	echo -e "\e[1;36m 创建 'FQ' 文件夹 \e[0m\n"
 	cp -f /tmp/fq_script.sh /etc/storage/dnsmasq.d/fq_script.sh
 	cp -f /etc/resolv.conf /etc/storage/dnsmasq.d/resolv_bak
-	echo "address=/localhost/127.0.0.1" > /etc/storage/dnsmasq.d/conf/hosts_fq.conf
-	chmod 644 /etc/storage/dnsmasq.d/conf/hosts_fq.conf
+	echo "address=/localhost/127.0.0.1" > /etc/storage/dnsmasq.d/conf/hosts_fq.conf && chmod 644 /etc/storage/dnsmasq.d/conf/hosts_fq.conf
 fi
 
 if [ ! -f "/etc/storage/dnsmasq.d/userlist" ]; then
