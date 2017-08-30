@@ -111,9 +111,9 @@ fi
 
 if [ -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
 	echo -e "\e[1;36m 添加 HOSTS 启动路径 \e[0m\n"
-	grep "hosts_fq.conf" /etc/storage/dnsmasq/dnsmasq.conf
+	grep "addn-hosts" /etc/storage/dnsmasq/dnsmasq.conf
 	if [ $? -eq 0 ]; then
-		sed -i '/hosts_fq.conf/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/addn-hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
 	else
 		echo -e "\033[41;37m 开始写入启动代码 \e[0m\n"
 	fi
