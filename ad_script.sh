@@ -120,7 +120,7 @@ if [ -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
 	rm -f /tmp/tmp_dnsmasq.conf
 fi
 
-if [ -f "/etc/storage/dnsmasq.d/fq_update.sh" ]; then
+if [ -f "/etc/storage/dnsmasq.d/ad_update.sh" ]; then
 	echo -e -n "\033[41;37m 开始下载去广告脚本文件......\033[0m\n"
 	sh /etc/storage/dnsmasq.d/ad_update.sh
 fi
