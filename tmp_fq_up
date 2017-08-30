@@ -1,0 +1,76 @@
+#!/bin/sh
+# Compile:by-lanse    2017-08-30
+LOGTIME=$(date "+%m-%d %H:%M:%S")
+route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
+username=`nvram get http_username`
+
+echo -e "\e[1;36m FQ 翻墙规则开始下载... \e[0m\n"
+[ -f /tmp/fq ] && rm -rf /tmp/fq
+
+# 下载 FQ 组合规则
+wget --no-check-certificate https://raw.githubusercontent.com/896660689/os/master/FQ -qO \
+/tmp/fq.conf && sleep 2 && chmod +x /tmp/fq.conf && . /tmp/fq.conf
+
+sleep 2
+echo -e "\e[1;36m 导入自定义规则 \e[0m\n"
+cp /etc/storage/dnsmasq.d/userlist /tmp/userlist
+
+# 合并 dnsmasq 缓存
+cat /tmp/userlist /tmp/fq > /tmp/hosts_fq
+
+# 删除 dnsmasq 缓存
+rm -rf /tmp/userlist
+rm -rf /tmp/fq
+rm -rf /tmp/fq.conf
+
+# 创建 dnsmasq 规则文件
+cat > /tmp/hosts_fq.conf <<EOF
+## 域名自定义 dnsmasq 设置	【2017 by.lanse】
+# Localhost (DO NOT REMOVE) Start
+address=/localhost/127.0.0.1
+address=/localhost/::1
+address=/ip6-localhost/::1
+address=/ip6-loopback/::1
+# Localhost (DO NOT REMOVE) End
+EOF
+
+# 去重排序规则
+sort -n /tmp/hosts_fq | uniq >> /tmp/hosts_fq.conf
+
+# 修饰结束
+sleep 2
+sed -i '$a # Modified DNS end' /tmp/hosts_fq.conf
+
+echo -e "\033[41;33m 更新 FQ 规则\033[0m\n"
+if [ -f /tmp/hosts_fq.conf ]; then
+	[ -f "/tmp/hosts_fq.txt" ] && rm -f /tmp/hosts_fq.txt
+	echo | awk '{print$0}' /tmp/hosts_fq.conf /etc/storage/dnsmasq.d/conf/hosts_fq.conf | sort | uniq -u > /tmp/hosts_fq.txt;sleep 2
+	if [ $? -eq 0 ];then
+		if [ ! -s "/tmp/hosts_fq.txt" ]; then
+			logger -t "【$LOGTIME】" "FQ 规则已为最新,无需更新..."
+			echo -e "\e[1;33m FQ 已为最新规则无需更新.\e[0m\n"
+			rm -rf /tmp/hosts_fq.conf
+		else
+                        [ -f "/etc/storage/dnsmasq.d/conf/hosts_fq.conf" ] && rm -f /etc/storage/dnsmasq.d/conf/hosts_fq.conf
+                        mv -f /tmp/hosts_fq.conf /etc/storage/dnsmasq.d/conf/hosts_fq.conf;sleep 2
+			if [ $? -eq 0 ]; then
+				logger -t "【$LOGTIME】" "最新 FQ 规则安装完成..."
+				echo -e "\e[1;33m 最新 FQ 规则安装完成.\e[0m\n"
+				rm -f /tmp/hosts_fq.conf
+			else
+				logger -t "【$LOGTIME】" "FQ 更新失败，重新启动更新任务..."
+				echo -e "\e[1;37m FQ 更新失败，重新启动更新任务\e[0m\n"
+				sh /tmp/tmp_fq_up
+			fi
+		fi
+	else
+		logger -t "【$LOGTIME】" "FQ 更新失败，重新启动更新任务..."
+		echo -e "\e[1;37m FQ 更新失败，重新启动更新任务\e[0m\n"
+		h /tmp/tmp_fq_up
+	fi
+fi
+
+# 删除临时合并缓存
+rm -rf /tmp/hosts_fq
+rm -rf /tmp/hosts_fq.txt
+rm -rf /tmp/tmp_fq_up
