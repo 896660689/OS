@@ -12,6 +12,16 @@ if [ ! -d "/etc/storage/dnsmasq.d" ]; then
 	cp -f /etc/resolv.conf /etc/storage/dnsmasq.d/resolv_bak
 fi
 
+if [ ! -f "/etc/storage/dnsmasq.d/userlist" ]; then
+	echo -e "\e[1;36m 创建自定义翻墙规则 \e[0m\n"
+	cat > "/etc/storage/dnsmasq.d/userlist" <<EOF
+# 国内dns优化
+address=/email.163.com/223.6.6.6
+address=/mail.qq.com/119.29.29.29
+EOF
+fi
+chmod 644 /etc/storage/dnsmasq.d/userlist
+
 if [ -d "/etc/storage/dnsmasq.d" ]; then
 	echo -e "\e[1;33m 创建更新脚本 \e[0m\n"
 	wget --no-check-certificate -t 30 -T 60 https://raw.githubusercontent.com/896660689/os/master/tmp_fq_up -qO /tmp/tmp_fq_up
