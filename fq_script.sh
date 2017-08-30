@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse	2017-08-30
+# Compile:by-lanse	2017-08-31
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
 
@@ -71,6 +71,7 @@ else
 		sed -i '/127.0.0.1/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/1800/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/hosts_fq.conf/d' /etc/storage/dnsmasq/dnsmasq.conf
 	else
 		echo -e "\033[41;37m 开始写入启动代码 \e[0m\n"
