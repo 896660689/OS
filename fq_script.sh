@@ -5,11 +5,12 @@ username=`nvram get http_username`
 
 echo -e -n "\033[41;37m 开始构建翻墙平台......\033[0m\n"
 sleep 3
-if [ ! -d "/etc/storage/dnsmasq.d" ]; then
-	mkdir -p -m 755 /etc/storage/dnsmasq.d
-	echo -e "\e[1;36m 创建 dnsmasq 规则脚本文件夹 \e[0m\n"
+if [ ! -d "/etc/storage/dnsmasq.d/conf" ]; then
+	mkdir -p -m 755 /etc/storage/dnsmasq.d/conf
+	echo -e "\e[1;36m 创建 'FQ' 文件夹 \e[0m\n"
 	cp -f /tmp/fq_script.sh /etc/storage/dnsmasq.d/fq_script.sh
 	cp -f /etc/resolv.conf /etc/storage/dnsmasq.d/resolv_bak
+	echo "address=/localhost/127.0.0.1" > /etc/storage/dnsmasq.d/conf/hosts_fq.conf && chmod 644 /etc/storage/dnsmasq.d/conf/hosts_fq.conf
 fi
 
 if [ ! -f "/etc/storage/dnsmasq.d/userlist" ]; then
@@ -45,12 +46,6 @@ fi
 chmod 644 /etc/storage/dnsmasq.d/resolv.conf && chmod 644 /etc/resolv.conf
 cp -f /etc/storage/dnsmasq.d/resolv.conf /tmp/resolv.conf
 sed -i "/#/d" /tmp/resolv.conf;mv -f /tmp/resolv.conf /etc/resolv.conf
-
-if [ ! -d "/etc/storage/dnsmasq.d/conf" ]; then
-	echo -e "\e[1;36m 创建 'FQ' 文件 \e[0m\n"
-	mkdir -p /etc/storage/dnsmasq.d/conf
-	echo "address=/localhost/127.0.0.1" > /etc/storage/dnsmasq.d/conf/hosts_fq.conf && chmod 644 /etc/storage/dnsmasq.d/conf/hosts_fq.conf
-fi
 
 if [ -f "/etc/storage/cron/crontabs/$username" ]; then
 	echo -e "\e[1;33m 添加定时计划更新任务 \e[0m\n"
