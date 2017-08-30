@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse    2018-08-28
+# Compile:by-lanse    2018-08-31
 LOGTIME=$(date "+%m-%d %H:%M:%S")
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 
@@ -103,7 +103,7 @@ chmod 644 /etc/storage/dnsmasq.d/whitelist
 if [ -f "/etc/storage/cron/crontabs/$username" ]; then
 	echo -e "\e[1;31m 添加定时计划更新任务 \e[0m\n"
 	sed -i '/ad_update.sh/d' /etc/storage/cron/crontabs/$username
-	sed -i '$a 45 05 * * 2,4,6 sh /etc/storage/dnsmasq.d/ad_update.sh' /etc/storage/cron/crontabs/$username
+	sed -i '$a 35 05 * * 2,4,6 sh /etc/storage/dnsmasq.d/ad_update.sh' /etc/storage/cron/crontabs/$username
 	killall crond;/usr/sbin/crond
 fi
 
