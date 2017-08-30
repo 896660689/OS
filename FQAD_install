@@ -45,7 +45,6 @@ if [ "$Function_options" == "3" ]; then
 		sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/1800/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
-		sed -i '/hosts_fq.conf/d' /etc/storage/dnsmasq/dnsmasq.conf
 		if [ ! -f "/etc/storage/dnsmasq.d/resolv" ]; then
 			sed -i '/176.103.130.131/d' /etc/resolv.conf
 			sed -i '/119.29.29.29/d' /etc/resolv.conf
