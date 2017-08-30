@@ -135,4 +135,5 @@ if [ "$Function_options" == "7" ]; then
 	[ -f /tmp/FQAD_install ] && rm -f /tmp/FQAD_install
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
 	[ -f /tmp/ad_script.sh ] && rm -f /tmp/ad_script.sh
+	exit 0
 fi
