@@ -57,12 +57,10 @@ if [ "$Function_options" == "3" ]; then
 	if [ -d "/etc/storage/dnsmasq.d/hosts" ]; then
 		echo -e "\e[1;31m 删除残留文件夹以及配置 \e[0m\n" && sleep 2
 		rm -rf /etc/storage/dnsmasq.d/resolv.conf
-    rm -rf /etc/storage/dnsmasq.d/userlist
-    rm -rf /etc/storage/dnsmasq.d/whitelist
-    rm -rf /etc/storage/dnsmasq.d/blacklist
+		rm -rf /etc/storage/dnsmasq.d/userlist
 		rm -rf /etc/storage/dnsmasq.d/fq_script.sh
-    rm -rf /etc/storage/dnsmasq.d/fq_update.sh
-    rm -rf /etc/storage/dnsmasq.d/conf
+		rm -rf /etc/storage/dnsmasq.d/fq_update.sh
+		rm -rf /etc/storage/dnsmasq.d/conf
     
 	fi
 
@@ -118,7 +116,9 @@ if [ "$Function_options" == "6" ]; then
 	if [ -d "/etc/storage/bin/hosts" ]; then
 		echo -e "\e[1;31m 删除残留文件夹以及配置 \e[0m\n" && sleep 2
 		rm -rf /etc/storage/dnsmasq.d/hosts
-    rm -rf /etc/storage/dnsmasq.d/ad_script.sh
+		rm -rf /etc/storage/dnsmasq.d/whitelist
+		rm -rf /etc/storage/dnsmasq.d/blacklist
+		rm -rf /etc/storage/dnsmasq.d/ad_script.sh
 		rm -rf /etc/storage/dnsmasq.d/ad_update.sh
 	fi
 
@@ -135,5 +135,5 @@ fi
 if [ "$Function_options" == "7" ]; then
 	[ -f /tmp/FQAD_install ] && rm -f /tmp/FQAD_install
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
-  [ -f /tmp/ad_script.sh ] && rm -f /tmp/ad_script.sh
+	[ -f /tmp/ad_script.sh ] && rm -f /tmp/ad_script.sh
 fi
