@@ -107,6 +107,19 @@ if [ -f "/etc/storage/cron/crontabs/$username" ]; then
 	killall crond;/usr/sbin/crond
 fi
 
+if [ -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
+	echo -e "\e[1;36m 添加 HOSTS 启动路径 \e[0m\n"
+	grep "hosts_fq.conf" /etc/storage/dnsmasq/dnsmasq.conf
+	if [ $? -eq 0 ]; then
+		sed -i '/hosts_fq.conf/d' /etc/storage/dnsmasq/dnsmasq.conf
+	else
+		echo -e "\033[41;37m 开始写入启动代码 \e[0m\n"
+	fi
+	echo "addn-hosts=/etc/storage/dnsmasq.d/hosts" >> /tmp/tmp_dnsmasq.conf
+	cat /tmp/tmp_dnsmasq.conf >> /etc/storage/dnsmasq/dnsmasq.conf;sleep 3
+	rm -f /tmp/tmp_dnsmasq.conf
+fi
+
 if [ -f "/etc/storage/dnsmasq.d/fq_update.sh" ]; then
 	echo -e -n "\033[41;37m 开始下载去广告脚本文件......\033[0m\n"
 	sh /etc/storage/dnsmasq.d/ad_update.sh
