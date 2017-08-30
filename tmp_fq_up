@@ -55,6 +55,7 @@ if [ -f /tmp/hosts_fq.conf ]; then
                         mv -f /tmp/hosts_fq.conf /etc/storage/dnsmasq.d/conf/hosts_fq.conf;sleep 2
 			if [ $? -eq 0 ]; then
 				logger -t "【$LOGTIME】" "最新 FQ 规则安装完成..."
+				chmod 644 /etc/storage/dnsmasq.d/conf/hosts_fq.conf
 				echo -e "\e[1;33m 最新 FQ 规则安装完成.\e[0m\n"
 				rm -f /tmp/hosts_fq.conf
 			else
