@@ -79,6 +79,7 @@ if [ -f /tmp/hosts_ad.conf ]; then
                         mv -f /tmp/hosts_ad.conf /etc/storage/dnsmasq.d/hosts/hosts_ad.conf;sleep 2
 			if [ $? -eq 0 ]; then
 				logger -t "【$LOGTIME】" "最新 AD 规则更新完成..."
+				chmod 644 /etc/storage/dnsmasq.d/hosts/hosts_ad.conf
 				echo -e "\e[1;33m Hosts 最新 AD 规则更新完成.\e[0m\n"
 				rm -f /tmp/hosts_ad.conf
 			else
