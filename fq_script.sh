@@ -30,7 +30,7 @@ chmod 644 /etc/storage/dnsmasq.d/userlist
 
 if [ -d "/etc/storage/dnsmasq.d" ]; then
 	echo -e "\e[1;33m 创建更新脚本 \e[0m\n"
-	wget --no-check-certificate -t 30 -T 60 https://raw.githubusercontent.com/896660689/os/master/fq_update.sh -qO /tmp/fq_update.sh
+	wget --no-check-certificate -t 30 -T 60 https://raw.githubusercontent.com/896660689/OS/master/fq_update.sh -qO /tmp/fq_update.sh
 	mv -f /tmp/fq_update.sh /etc/storage/dnsmasq.d/fq_update.sh && sleep 3
 	chmod 755 /etc/storage/dnsmasq.d/fq_update.sh
 fi
@@ -63,7 +63,7 @@ echo -e "\e[1;36m 添加 FQ 启动路径 \e[0m\n"
 [ -f /var/log/dnsmasq.log ] && rm /var/log/dnsmasq.log
 [ -f /tmp/tmp_dnsmasq ] && rm /tmp/tmp_dnsmasq
 if [ ! -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
-	wget --no-check-certificate -t 20 -T 50 https://raw.githubusercontent.com/896660689/os/master/tmp_dnsmasq -qO /tmp/tmp_dnsmasq
+	wget --no-check-certificate -t 20 -T 50 https://raw.githubusercontent.com/896660689/OS/master/tmp_dnsmasq -qO /tmp/tmp_dnsmasq
 	chmod 777 /tmp/tmp_dnsmasq && sh /tmp/tmp_dnsmasq
 else
 	grep "conf-dir" /etc/storage/dnsmasq/dnsmasq.conf
@@ -119,5 +119,5 @@ echo "+                     Time:`date +'%Y-%m-%d'`                      +"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sleep 3
 rm -rf /tmp/fq_script.sh
-[ ! -f "/tmp/FQAD_install" ] && exit 0
-sh /tmp/FQAD_install
+[ ! -f "/tmp/fqad_install" ] && exit 0
+sh /tmp/fqad_install
