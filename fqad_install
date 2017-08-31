@@ -21,15 +21,21 @@ echo -e "\e[1;36m >	5. 更新 \e[1;36mpadavan 纯净去AD版\e[0m\n"
 
 echo -e "\e[1;31m >	6. 卸载 \e[1;36mpadavan 纯净去AD版\e[0m\n"
 
-echo -e "\e[1;31m >	7. \033[41;37m退出\e[0m\n"
+echo -e "\e[1;37m >	7. 安装 \e[1;37mpadavan \033[41;37mFQ+AD合集版\e[0m\n"
+
+echo -e "\e[1;37m >	8. 更新 \e[1;37mpadavan FQ+AD合集版\e[0m\n"
+
+echo -e "\e[1;31m >	9. 卸载 \e[1;37mpadavan FQ+AD合集版\e[0m\n"
+
+echo -e "\e[1;31m >	0. \033[41;37m退出\e[0m\n"
 
 echo -e -n "\e[44;37m 请输入数字继续执行: \e[0m" 
 read Function_options
 if [ "$Function_options" == "1" ]; then
-	echo
 	[ -f /tmp/fq_script.sh ] && rm -rf /tmp/fq_script.sh
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/fq_script.sh -O \
 	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh
+	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "2" ]; then
@@ -45,7 +51,7 @@ if [ "$Function_options" == "3" ]; then
 		sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/1800/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
-		if [ ! -f "/etc/storage/dnsmasq.d/resolv" ]; then
+		if [ ! -f "/etc/storage/dnsmasq.d/resolv_bak" ]; then
 			sed -i '/176.103.130.131/d' /etc/resolv.conf
 			sed -i '/119.29.29.29/d' /etc/resolv.conf
 		else
@@ -83,7 +89,7 @@ if [ "$Function_options" == "3" ]; then
 	fi
 
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
-	echo -e "\e[1;34m-- Hsfq 卸载完毕,返回主菜单--\e[0m\n" && sleep 3
+	echo -e "\e[1;34m--科学上网卸载完毕,返回主菜单--\e[0m\n" && sleep 3
 	sh /tmp/fqad_install
 fi
 
@@ -132,6 +138,78 @@ if [ "$Function_options" == "6" ]; then
 fi
 
 if [ "$Function_options" == "7" ]; then
+	[ -f /tmp/fq_script.sh ] && rm -rf /tmp/fq_script.sh;[ -f /tmp/ad_script.sh ] && rm -rf /tmp/ad_script.sh
+	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/fq_script.sh -O \
+	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh && sleep 3
+	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/ad_script.sh -O \
+	/tmp/ad_script.sh && chmod +x /tmp/ad_script.sh && . /tmp/ad_script.sh
+	sh /tmp/fqad_install
+fi
+
+if [ "$Function_options" == "8" ]; then
+	sh /etc/storage/dnsmasq.d/fq_update.sh && sleep 3
+	sh /etc/storage/dnsmasq.d/ad_update.sh
+	echo -e "\e[1;34m FQ+AD更新已完成,返回主菜单 \e[0m\n" && sleep 3
+	sh /tmp/fqad_install
+fi
+
+if [ "$Function_options" == "9" ]; then
+	if [ -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
+		echo -e "\e[1;31m 开始卸载启动规则 \e[0m\n"
+		sed -i '/127.0.0.1/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/1800/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/ad_update.sh/d' /etc/storage/cron/crontabs/$username
+		if [ ! -f "/etc/storage/dnsmasq.d/resolv_bak" ]; then
+			sed -i '/176.103.130.131/d' /etc/resolv.conf
+			sed -i '/119.29.29.29/d' /etc/resolv.conf
+		else
+			cp -f /etc/storage/dnsmasq.d/resolv_bak /etc/resolv.conf
+		fi
+	fi
+
+	if [ -f "/etc/storage/cron/crontabs/$username" ]; then
+		echo -e "\e[1;31m 删除更新计划任务 \e[0m\n" && sleep 2
+		sed -i '/ad_update.sh/d' /etc/storage/cron/crontabs/$username
+		sed -i '/fq_update.sh/d' /etc/storage/cron/crontabs/$username
+		killall crond;/usr/sbin/crond
+	fi
+
+	if [ -d "/etc/storage/dnsmasq.d/hosts" ]; then
+		echo -e "\e[1;31m 删除残留文件夹以及配置 \e[0m\n" && sleep 2
+		rm -rf /etc/storage/dnsmasq.d/whitelist
+		rm -rf /etc/storage/dnsmasq.d/blacklist
+		rm -rf /etc/storage/dnsmasq.d/ad_script.sh
+		rm -rf /etc/storage/dnsmasq.d/ad_update.sh
+		rm -rf /etc/storage/dnsmasq.d/hosts
+		rm -rf /etc/storage/dnsmasq.d/resolv.conf
+		rm -rf /etc/storage/dnsmasq.d/userlist
+		rm -rf /etc/storage/dnsmasq.d/fq_script.sh
+		rm -rf /etc/storage/dnsmasq.d/fq_update.sh
+		rm -rf /etc/storage/dnsmasq.d/conf
+		#rm -rf /etc/storage/dnsmasq.d
+	fi	
+
+	if [ -f "/etc/storage/post_iptables_script.sh" ]; then
+		echo -e "\e[1;31m 删除防火墙规则 \e[0m\n" && sleep 2
+		sed -i '/DNAT/d' /etc/storage/post_iptables_script.sh
+		sed -i '/iptables-save/d' /etc/storage/post_iptables_script.sh
+		sed -i '/resolv.conf/d' /etc/storage/post_iptables_script.sh
+		sed -i '/restart_dhcpd/d' /etc/storage/post_iptables_script.sh
+	fi
+
+	if [ -f "/usr/sbin/dnsmasq" ]; then
+		echo -e "\e[1;31m 重启 dnsmasq \e[0m\n"
+		restart_dhcpd;/usr/sbin/dnsmasq restart >/dev/null 2>&1
+	fi
+
+	[ -f "/tmp/ad_script.sh" ] && rm -f /tmp/ad_script.sh
+	echo -e "\e[1;34m--FQ+AD版卸载完毕,返回主菜单--\e[0m\n" && sleep 3
+	sh /tmp/fqad_install
+fi
+
+if [ "$Function_options" == "0" ]; then
 	[ -f /tmp/fqad_install ] && rm -f /tmp/fqad_install
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
 	[ -f /tmp/ad_script.sh ] && rm -f /tmp/ad_script.sh
