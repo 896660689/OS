@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse    2018-08-28
+# Compile:by-lanse    2018-08-31
 
 echo -e "\e[1;36m 下载 '网络收集' HOSTS 规则 \e[0m\n"
 TMP_ABD=/tmp/tmp_abd
