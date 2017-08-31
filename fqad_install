@@ -176,7 +176,7 @@ if [ "$Function_options" == "9" ]; then
 		killall crond;/usr/sbin/crond
 	fi
 
-	if [ -d "/etc/storage/dnsmasq.d/hosts" ]; then
+	if [ -d "/etc/storage/dnsmasq.d" ]; then
 		echo -e "\e[1;31m 删除残留文件夹以及配置 \e[0m\n" && sleep 2
 		rm -rf /etc/storage/dnsmasq.d/whitelist
 		rm -rf /etc/storage/dnsmasq.d/blacklist
