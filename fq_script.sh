@@ -120,4 +120,3 @@ echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sleep 3
 rm -rf /tmp/fq_script.sh
 [ ! -f "/tmp/fqad_install" ] && exit 0
-sh /tmp/fqad_install
