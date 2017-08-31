@@ -67,6 +67,7 @@ if [ "$Function_options" == "3" ]; then
 		rm -rf /etc/storage/dnsmasq.d/fq_script.sh
 		rm -rf /etc/storage/dnsmasq.d/fq_update.sh
 		rm -rf /etc/storage/dnsmasq.d/conf
+		rm -rf /var/log/dnsmasq.log
 	fi
 
 	if [ -f "/etc/storage/cron/crontabs/$username" ]; then
@@ -190,6 +191,7 @@ if [ "$Function_options" == "9" ]; then
 		rm -rf /etc/storage/dnsmasq.d/fq_script.sh
 		rm -rf /etc/storage/dnsmasq.d/fq_update.sh
 		rm -rf /etc/storage/dnsmasq.d/conf
+		rm -rf /var/log/dnsmasq.log
 		#rm -rf /etc/storage/dnsmasq.d
 	fi	
 
