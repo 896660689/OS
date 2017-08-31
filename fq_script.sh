@@ -80,7 +80,7 @@ else
 log-queries
 log-facility=/var/log/dnsmasq.log
 # 异步log,缓解阻塞，提高性能。默认为5，最大为100
-log-async=80
+log-async=20
 # 缓存最长时间
 min-cache-ttl=1800
 # 指定服务器'域名''地址'文件夹
