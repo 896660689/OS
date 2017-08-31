@@ -67,7 +67,7 @@ if [ -f /tmp/hosts_fq.conf ]; then
 	else
 		logger -t "【$LOGTIME】" "FQ 更新失败，重新启动更新任务..."
 		echo -e "\e[1;37m FQ 更新失败，重新启动更新任务\e[0m\n"
-		h /tmp/tmp_fq_up
+		sh /tmp/tmp_fq_up
 	fi
 fi
 
