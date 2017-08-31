@@ -127,11 +127,11 @@ if [ -f "/etc/storage/dnsmasq.d/ad_update.sh" ]; then
 	sh /etc/storage/dnsmasq.d/ad_update.sh
 fi
 
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "+                 installation is complete                 +"
-echo "+                                                          +"
-echo "+                     Time:`date +'%Y-%m-%d'`                      +"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "************************************************************"
+echo "*                 installation is complete                 *"
+echo "*                                                          *"
+echo "*                     Time:`date +'%Y-%m-%d'`                      *"
+echo "************************************************************"
 sleep 3
 rm -rf /tmp/ad_script.sh
 [ ! -f "/tmp/fqad_install" ] && exit 0
