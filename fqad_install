@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse	2017-08-30
+# Compile:by-lanse	2017-08-31
 
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
@@ -35,7 +35,7 @@ fi
 if [ "$Function_options" == "2" ]; then
 	sh /etc/storage/dnsmasq.d/fq_update.sh
 	echo -e "\e[1;34m 更新已完成,返回主菜单 \e[0m\n" && sleep 3
-	sh /tmp/FQAD_install
+	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "3" ]; then
@@ -84,20 +84,20 @@ if [ "$Function_options" == "3" ]; then
 
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
 	echo -e "\e[1;34m-- Hsfq 卸载完毕,返回主菜单--\e[0m\n" && sleep 3
-	sh /tmp/FQAD_install
+	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "4" ]; then
 	[ -f /tmp/ad_script.sh ] && rm -rf /tmp/ad_script.sh
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/os/master/ad_script.sh -O \
 	/tmp/ad_script.sh && chmod +x /tmp/ad_script.sh && . /tmp/ad_script.sh
-	sh /tmp/FQAD_install
+	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "5" ]; then
 	sh /etc/storage/dnsmasq.d/ad_update.sh
 	echo -e "\e[1;34m 纯净去广告更新已完成,返回主菜单 \e[0m\n" && sleep 3
-	sh /tmp/FQAD_install
+	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "6" ]; then
@@ -128,11 +128,11 @@ if [ "$Function_options" == "6" ]; then
 
 	[ -f "/tmp/ad_script.sh" ] && rm -f /tmp/ad_script.sh
 	echo -e "\e[1;34m--纯净去广告卸载完毕,返回主菜单--\e[0m\n" && sleep 3
-	sh /tmp/FQAD_install
+	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "7" ]; then
-	[ -f /tmp/FQAD_install ] && rm -f /tmp/FQAD_install
+	[ -f /tmp/fqad_install ] && rm -f /tmp/fqad_install
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
 	[ -f /tmp/ad_script.sh ] && rm -f /tmp/ad_script.sh
 	exit 0
