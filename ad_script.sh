@@ -14,7 +14,7 @@ cp -f /tmp/ad_script.sh /etc/storage/dnsmasq.d/ad_script.sh
 
 if [ -d "/etc/storage/dnsmasq.d" ]; then
 	echo -e "\e[1;33m 创建更新脚本 \e[0m\n"
-	wget --no-check-certificate -t 30 -T 60 https://raw.githubusercontent.com/896660689/os/master/ad_update.sh -qO /tmp/ad_update.sh
+	wget --no-check-certificate -t 30 -T 60 https://raw.githubusercontent.com/896660689/OS/master/ad_update.sh -qO /tmp/ad_update.sh
 	mv -f /tmp/ad_update.sh /etc/storage/dnsmasq.d/ad_update.sh && sleep 3
 	chmod 755 /etc/storage/dnsmasq.d/ad_update.sh
 fi
@@ -134,5 +134,5 @@ echo "+                     Time:`date +'%Y-%m-%d'`                      +"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 sleep 3
 rm -rf /tmp/ad_script.sh
-[ ! -f "/tmp/FQAD_install" ] && exit 0
-sh /tmp/FQAD_install
+[ ! -f "/tmp/fqad_install" ] && exit 0
+sh /tmp/fqad_install
