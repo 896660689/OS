@@ -46,6 +46,7 @@ fi
 
 # 删除注释
 sed -i '/::1/d' /tmp/hosts_ad
+sed -i "/youtube/d; /tumblr/d" /tmp/hosts_ad
 
 # 创建 hosts 规则文件
 echo "## 自定义 hosts 设置	【2017 by.lanse】
@@ -57,6 +58,7 @@ echo "## 自定义 hosts 设置	【2017 by.lanse】
 # Localhost (DO NOT REMOVE) End
 # Example: hosts 设置例子:
 # 192.168.2.80		Boo" > /tmp/hosts_ad.conf
+
 
 # 去重排序规则
 sort -n /tmp/hosts_ad | uniq | sed -E -e "/^$/d" -e "s/[[:space:]][[:space:]]*/ /g" >> /tmp/hosts_ad.conf
