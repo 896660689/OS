@@ -40,6 +40,7 @@ fi
 if [ "$Function_options" == "2" ]; then
 	sh /etc/storage/dnsmasq.d/fq_update.sh
 	echo -e "\e[1;34m 更新已完成,返回主菜单 \e[0m\n" && sleep 3
+	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "3" ]; then
@@ -99,6 +100,7 @@ fi
 if [ "$Function_options" == "5" ]; then
 	sh /etc/storage/dnsmasq.d/ad_update.sh
 	echo -e "\e[1;34m 纯净去广告更新已完成,返回主菜单 \e[0m\n" && sleep 3
+	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "6" ]; then
@@ -144,6 +146,7 @@ if [ "$Function_options" == "8" ]; then
 	sh /etc/storage/dnsmasq.d/fq_update.sh && sleep 3
 	sh /etc/storage/dnsmasq.d/ad_update.sh
 	echo -e "\e[1;34m FQ+AD更新已完成,返回主菜单 \e[0m\n" && sleep 3
+	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "9" ]; then
