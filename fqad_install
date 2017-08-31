@@ -28,7 +28,7 @@ read Function_options
 if [ "$Function_options" == "1" ]; then
 	echo
 	[ -f /tmp/fq_script.sh ] && rm -rf /tmp/fq_script.sh
-	wget --no-check-certificate https://raw.githubusercontent.com/896660689/os/master/fq_script.sh -O \
+	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/fq_script.sh -O \
 	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh
 fi
 
@@ -89,7 +89,7 @@ fi
 
 if [ "$Function_options" == "4" ]; then
 	[ -f /tmp/ad_script.sh ] && rm -rf /tmp/ad_script.sh
-	wget --no-check-certificate https://raw.githubusercontent.com/896660689/os/master/ad_script.sh -O \
+	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/ad_script.sh -O \
 	/tmp/ad_script.sh && chmod +x /tmp/ad_script.sh && . /tmp/ad_script.sh
 	sh /tmp/fqad_install
 fi
