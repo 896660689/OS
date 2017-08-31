@@ -112,11 +112,11 @@ if [ -f "/etc/storage/dnsmasq.d/fq_update.sh" ]; then
 	sh /etc/storage/dnsmasq.d/fq_update.sh
 fi
 
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-echo "+                 installation is complete                 +"
-echo "+                                                          +"
-echo "+                     Time:`date +'%Y-%m-%d'`                      +"
-echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "************************************************************"
+echo "*                 installation is complete                 *"
+echo "*                                                          *"
+echo "*                     Time:`date +'%Y-%m-%d'`                      *"
+echo "************************************************************"
 sleep 3
 rm -rf /tmp/fq_script.sh
 [ ! -f "/tmp/fqad_install" ] && exit 0
