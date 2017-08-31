@@ -35,13 +35,11 @@ if [ "$Function_options" == "1" ]; then
 	[ -f /tmp/fq_script.sh ] && rm -rf /tmp/fq_script.sh
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/fq_script.sh -O \
 	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh
-	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "2" ]; then
 	sh /etc/storage/dnsmasq.d/fq_update.sh
 	echo -e "\e[1;34m 更新已完成,返回主菜单 \e[0m\n" && sleep 3
-	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "3" ]; then
@@ -90,20 +88,17 @@ if [ "$Function_options" == "3" ]; then
 
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
 	echo -e "\e[1;34m--科学上网卸载完毕,返回主菜单--\e[0m\n" && sleep 3
-	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "4" ]; then
 	[ -f /tmp/ad_script.sh ] && rm -rf /tmp/ad_script.sh
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/ad_script.sh -O \
 	/tmp/ad_script.sh && chmod +x /tmp/ad_script.sh && . /tmp/ad_script.sh
-	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "5" ]; then
 	sh /etc/storage/dnsmasq.d/ad_update.sh
 	echo -e "\e[1;34m 纯净去广告更新已完成,返回主菜单 \e[0m\n" && sleep 3
-	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "6" ]; then
@@ -134,7 +129,6 @@ if [ "$Function_options" == "6" ]; then
 
 	[ -f "/tmp/ad_script.sh" ] && rm -f /tmp/ad_script.sh
 	echo -e "\e[1;34m--纯净去广告卸载完毕,返回主菜单--\e[0m\n" && sleep 3
-	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "7" ]; then
@@ -143,14 +137,12 @@ if [ "$Function_options" == "7" ]; then
 	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh && sleep 3
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/ad_script.sh -O \
 	/tmp/ad_script.sh && chmod +x /tmp/ad_script.sh && . /tmp/ad_script.sh
-	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "8" ]; then
 	sh /etc/storage/dnsmasq.d/fq_update.sh && sleep 3
 	sh /etc/storage/dnsmasq.d/ad_update.sh
 	echo -e "\e[1;34m FQ+AD更新已完成,返回主菜单 \e[0m\n" && sleep 3
-	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "9" ]; then
@@ -206,7 +198,6 @@ if [ "$Function_options" == "9" ]; then
 
 	[ -f "/tmp/ad_script.sh" ] && rm -f /tmp/ad_script.sh
 	echo -e "\e[1;34m--FQ+AD版卸载完毕,返回主菜单--\e[0m\n" && sleep 3
-	sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "0" ]; then
