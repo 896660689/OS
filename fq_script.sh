@@ -111,12 +111,6 @@ if [ -f "/etc/storage/dnsmasq.d/fq_update.sh" ]; then
 	echo -e -n "\033[41;37m 开始下载翻墙脚本文件......\033[0m\n"
 	sh /etc/storage/dnsmasq.d/fq_update.sh
 fi
-
-echo "************************************************************"
-echo "*                 installation is complete                 *"
-echo "*                                                          *"
-echo "*                     Time:`date +'%Y-%m-%d'`                      *"
-echo "************************************************************"
 sleep 3
 rm -rf /tmp/fq_script.sh
 [ ! -f "/tmp/fqad_install" ] && exit 0
