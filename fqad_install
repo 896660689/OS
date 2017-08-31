@@ -159,6 +159,7 @@ if [ "$Function_options" == "9" ]; then
 		sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/1800/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/addn-hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/ad_update.sh/d' /etc/storage/cron/crontabs/$username
 		if [ ! -f "/etc/storage/dnsmasq.d/resolv_bak" ]; then
 			sed -i '/176.103.130.131/d' /etc/resolv.conf
