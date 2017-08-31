@@ -19,7 +19,7 @@ done
 wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/sy618/hosts/master/dnsmasq/dnsfq" \
 |sed -E -e "/# /d" -e "/\#a/d" -e "/^$/d" -e "/★/d" -e "/^#/d" -e "/^$/d" >> ${TMP_FQ2}
 
-wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/Hsfq/master/hs_pc" \
+wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc" \
 | sed -E -e "/#/d" >> ${TMP_FQ3}
 
 sed -i "/youtube/d; /tumblr/d" ${TMP_FQ2}
