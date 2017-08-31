@@ -35,6 +35,7 @@ if [ "$Function_options" == "1" ]; then
 	[ -f /tmp/fq_script.sh ] && rm -rf /tmp/fq_script.sh
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/fq_script.sh -O \
 	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh
+	restart_dhcpd
 	sh /tmp/fqad_install && mtd_storage.sh save
 fi
 
@@ -139,7 +140,8 @@ fi
 if [ "$Function_options" == "7" ]; then
 	[ -f /tmp/fq_script.sh ] && rm -rf /tmp/fq_script.sh;[ -f /tmp/ad_script.sh ] && rm -rf /tmp/ad_script.sh
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/fq_script.sh -O \
-	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh && sleep 3
+	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh
+	restart_dhcpd && sleep 3
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/ad_script.sh -O \
 	/tmp/ad_script.sh && chmod +x /tmp/ad_script.sh && . /tmp/ad_script.sh
 	sh /tmp/fqad_install && mtd_storage.sh save
