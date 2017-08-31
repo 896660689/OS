@@ -17,7 +17,7 @@ do
 done
 
 wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/sy618/hosts/master/dnsmasq/dnsfq" \
-|sed -E -e "/# /d" -e "/\#a/d" -e "/^$/d" -e "/★/d" -e "/^#/d" -e "/^$/d" >> ${TMP_FQ2}
+| sed -E -e "/# /d; /\#a/d; /^$/d; /★/d; /^#/d; /^$/d" >> ${TMP_FQ2}
 
 wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc" \
 | sed -E -e "/#/d" >> ${TMP_FQ3}
