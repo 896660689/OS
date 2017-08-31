@@ -6,7 +6,6 @@ address=/ip6-localhost/::1
 address=/ip6-loopback/::1
 # Localhost (DO NOT REMOVE) End
 
-address=/.media.tumblr.com/119.161.8.100
 address=/24.media.tumblr.com/119.161.10.198
 address=/30.media.tumblr.com/192.229.237.98
 address=/31.media.tumblr.com/119.161.8.100
