@@ -5,9 +5,9 @@ route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " 
 username=`nvram get http_username`
 CRON_FILE=/etc/storage/cron/crontabs/$username
 clear
-echo -e "--------------------------------------------------------------------------------"
+echo -e "********************************************************************************"
 echo -e "\e[1;31m      全自动安装脚本--\e[1;36m翻网看世界\e[1;31m--\e[1;36m(padavan)专用\e[1;31m--\e[1;36m自动运行脚本\e[1;31m包含去AD规则\e[0m"
-echo -e "--------------------------------------------------------------------------------\n"
+echo -e "********************************************************************************\n"
 
 echo -e "\e[1;33m >	1. 安装 \e[1;33mpadavan \033[41;37m科学上网FQ版\e[0m\n"
 
@@ -200,11 +200,11 @@ if [ "$Function_options" == "9" ]; then
 fi
 
 if [ "$Function_options" == "0" ]; then
+	echo "************************************************************"
+	echo "*                     Time:`date +'%Y-%m-%d'`                      *"
+	echo "************************************************************"
+	sleep 3
+	[ -f /tmp/fqad_install ] && rm -f /tmp/fqad_install
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
 	[ -f /tmp/ad_script.sh ] && rm -f /tmp/ad_script.sh
-	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	echo "+                     Time:`date +'%Y-%m-%d'`                      +"
-	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	sleep 3
-	[ -f /tmp/fqad_install ] && rm -f /tmp/fqad_install && exit 0
 fi
