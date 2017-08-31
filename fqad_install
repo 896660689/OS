@@ -201,8 +201,11 @@ if [ "$Function_options" == "9" ]; then
 fi
 
 if [ "$Function_options" == "0" ]; then
-	[ -f /tmp/fqad_install ] && rm -f /tmp/fqad_install
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
 	[ -f /tmp/ad_script.sh ] && rm -f /tmp/ad_script.sh
-	exit 0
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	echo "+                     Time:`date +'%Y-%m-%d'`                      +"
+	echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	sleep 3
+	[ -f /tmp/fqad_install ] && rm -f /tmp/fqad_install && exit 0
 fi
