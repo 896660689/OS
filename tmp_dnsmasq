@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse    2018-08-29
+# Compile:by-lanse    2018-08-31
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 
 ## 配置dnsmasq.conf启动规则
