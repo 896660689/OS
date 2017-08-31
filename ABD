@@ -26,9 +26,9 @@ wget --no-check-certificate -t 20 -T 60 -O- https://raw.githubusercontent.com/vo
 #| grep ^\|\|[^\*]*\^$ | sed -e "s:||:127.0.0.1 :"  -e "s/.$//" >> ${TMP_ABD4}
 
 sleep 2
-cat ${TMP_ABD2} ${TMP_ABD3} ${TMP_ABD4} > ${ABD}
+cat ${TMP_ABD2} ${TMP_ABD3} > ${ABD}
 #sort -n ${TMP_ABD} |uniq >> ${ABD}
 
 echo -e "\033[45;37m 分享 'hosts' 规则下载完成 \033[0m\n"
 # 删除临时缓存
-rm -rf ${TMP_ABD2} ${TMP_ABD3} ${TMP_ABD4} 2> /dev/null
+rm -rf ${TMP_ABD2} ${TMP_ABD3} 2> /dev/null
