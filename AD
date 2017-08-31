@@ -12,11 +12,11 @@ for URL in \
 	"http://c.nnjsx.cn/GL/dnsmasq/update/adblock/yhosts.txt"
 do
 	wget -t 15 -T 50 --no-check-certificate -O- "${URL}" \
-	| sed -E -e "s/#.*$//" -e "/^$/d" -e "/::/d" -e "/localhos/d" -e "s/0.0.0.0/127.0.0.1/" -e "s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD}
+	| sed -E -e "s/#.*$//; /^$/d; /::/d; /localhos/d; s/0.0.0.0/127.0.0.1/; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD}
 done
 
 wget -t 15 -T 50 --no-check-certificate -O- https://raw.githubusercontent.com/vokins/yhosts/master/hosts \
-| sed -E -e "s/#.*$//" -e "/^$/d" -e "/::/d" -e "/localhos/d" -e "s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD2}
+| sed -E -e "s/#.*$//; /^$/d; /::/d; /localhos/d; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD2}
 
 cat ${TMP_AD} ${TMP_AD2} > ${AD}
 #sort -n ${TMP_AD} |uniq >> ${AD}
