@@ -64,7 +64,6 @@ if [ "$Function_options" == "3" ]; then
 		rm -rf /etc/storage/dnsmasq.d/fq_script.sh
 		rm -rf /etc/storage/dnsmasq.d/fq_update.sh
 		rm -rf /etc/storage/dnsmasq.d/conf
-    
 	fi
 
 	if [ -f "/etc/storage/cron/crontabs/$username" ]; then
