@@ -31,4 +31,4 @@ cat ${TMP_ABD2} ${TMP_ABD3} > ${ABD}
 
 echo -e "\033[45;37m 分享 'hosts' 规则下载完成 \033[0m\n"
 # 删除临时缓存
-rm -rf ${TMP_ABD2} ${TMP_ABD3} 2> /dev/null
+rm -rf ${TMP_ABD2} ${TMP_ABD3} >/dev/null 2>&1
