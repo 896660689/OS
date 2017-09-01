@@ -118,7 +118,7 @@ if [ -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
 		echo -e "\033[41;37m 开始写入启动代码 \e[0m\n"
 	fi
 	echo "no-hosts" >> /tmp/tmp_dnsmasq.conf
-	echo "addn-hosts=/etc/storage/dnsmasq.d/hosts" >> /tmp/tmp_dnsmasq.conf
+	echo "addn-hosts=/etc/storage/dnsmasq.d/hosts" >> /tmp/tmp_dnsmasq.conf 2>/dev/null
 	cat /tmp/tmp_dnsmasq.conf >> /etc/storage/dnsmasq/dnsmasq.conf;sleep 3
 	rm -f /tmp/tmp_dnsmasq.conf
 fi
