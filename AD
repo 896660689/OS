@@ -24,4 +24,4 @@ cat ${TMP_AD} ${TMP_AD2} > ${AD}
 sleep 2
 echo -e "\033[45;37m 'Hosts_Ad' 规则下载完成 \033[0m\n"
 # 删除临时缓存
-rm -rf ${TMP_AD} ${TMP_AD2} 2> /dev/null
+rm -rf ${TMP_AD} ${TMP_AD2} >/dev/null 2>&1
