@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse	2017-08-31
+# Compile:by-lanse	2017-09-01
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
 
@@ -77,10 +77,10 @@ else
 		echo "listen-address=${route_vlan},127.0.0.1
 # 添加监听地址
 # 开启日志选项
-log-queries
-log-facility=/var/log/dnsmasq.log
+#log-queries
+#log-facility=/var/log/dnsmasq.log
 # 异步log,缓解阻塞，提高性能。默认为5，最大为100
-log-async=20
+#log-async=20
 # 缓存最长时间
 #min-cache-ttl=1800
 # 指定服务器'域名''地址'文件夹
