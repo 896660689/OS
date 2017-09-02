@@ -35,8 +35,7 @@ if [ "$Function_options" == "1" ]; then
 	[ -f /tmp/fq_script.sh ] && rm -rf /tmp/fq_script.sh
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/fq_script.sh -O \
 	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh  && sleep 3
-	restart_dhcpd;/usr/sbin/dnsmasq restart >/dev/null 2>&1
-	mtd_storage.sh save >/dev/null 2>&1; sh /tmp/fqad_install
+	restart_dhcpd && mtd_storage.sh save >/dev/null 2>&1; sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "2" ]; then
@@ -85,7 +84,7 @@ if [ "$Function_options" == "3" ]; then
 
 	if [ -f "/usr/sbin/dnsmasq" ]; then
 		echo -e "\e[1;31m 重启 dnsmasq \e[0m\n"
-		restart_dhcpd;/usr/sbin/dnsmasq restart >/dev/null 2>&1
+		restart_dhcpd >/dev/null 2>&1
 	fi
 
 	[ -f /tmp/fq_script.sh ] && rm -f /tmp/fq_script.sh
@@ -129,7 +128,7 @@ if [ "$Function_options" == "6" ]; then
 
 	if [ -f "/usr/sbin/dnsmasq" ]; then
 		echo -e "\e[1;31m 重启 dnsmasq \e[0m\n"
-		restart_dhcpd;/usr/sbin/dnsmasq restart >/dev/null 2>&1
+		restart_dhcpd >/dev/null 2>&1
 	fi
 
 	[ -f "/tmp/ad_script.sh" ] && rm -f /tmp/ad_script.sh
@@ -141,10 +140,10 @@ if [ "$Function_options" == "7" ]; then
 	[ -f /tmp/fq_script.sh ] && rm -rf /tmp/fq_script.sh;[ -f /tmp/ad_script.sh ] && rm -rf /tmp/ad_script.sh
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/fq_script.sh -O \
 	/tmp/fq_script.sh && chmod +x /tmp/fq_script.sh && . /tmp/fq_script.sh && sleep 3
-	restart_dhcpd;/usr/sbin/dnsmasq restart >/dev/null 2>&1
+	restart_dhcpd >/dev/null 2>&1
 	wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/ad_script.sh -O \
 	/tmp/ad_script.sh && chmod +x /tmp/ad_script.sh && . /tmp/ad_script.sh
-	mtd_storage.sh save >/dev/null 2>&1; sh /tmp/fqad_install
+	restart_dhcpd && mtd_storage.sh save >/dev/null 2>&1; sh /tmp/fqad_install
 fi
 
 if [ "$Function_options" == "8" ]; then
@@ -203,7 +202,7 @@ if [ "$Function_options" == "9" ]; then
 
 	if [ -f "/usr/sbin/dnsmasq" ]; then
 		echo -e "\e[1;31m 重启 dnsmasq \e[0m\n"
-		restart_dhcpd;/usr/sbin/dnsmasq restart >/dev/null 2>&1
+		restart_dhcpd >/dev/null 2>&1
 	fi
 
 	[ -f "/tmp/ad_script.sh" ] && rm -f /tmp/ad_script.sh
