@@ -49,8 +49,7 @@ if [ "$Function_options" == "3" ]; then
 	if [ -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
 		echo -e "\e[1;31m 开始卸载启动规则 \e[0m\n"
 		sed -i '/127.0.0.1/d' /etc/storage/dnsmasq/dnsmasq.conf
-		#sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
-		#sed -i '/1800/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
 		if [ ! -f "/etc/storage/dnsmasq.d/resolv_bak" ]; then
 			sed -i '/176.103.130.131/d' /etc/resolv.conf
@@ -110,7 +109,7 @@ fi
 if [ "$Function_options" == "6" ]; then
 	if [ -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
 		echo -e "\e[1;31m 开始卸载启动规则 \e[0m\n"
-		sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/addn-hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
 	fi
 
 	if [ -f "/etc/storage/cron/crontabs/$username" ]; then
@@ -159,10 +158,9 @@ if [ "$Function_options" == "9" ]; then
 	if [ -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
 		echo -e "\e[1;31m 开始卸载启动规则 \e[0m\n"
 		sed -i '/127.0.0.1/d' /etc/storage/dnsmasq/dnsmasq.conf
-		#sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
-		#sed -i '/1800/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
-		sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/addn-hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
 		sed -i '/ad_update.sh/d' /etc/storage/cron/crontabs/$username
 		if [ ! -f "/etc/storage/dnsmasq.d/resolv_bak" ]; then
 			sed -i '/176.103.130.131/d' /etc/resolv.conf
