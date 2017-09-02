@@ -86,7 +86,7 @@ log-async=50
 # 指定服务器'域名''地址'文件夹
 conf-dir=/etc/storage/dnsmasq.d/conf
 # conf-file=/etc/storage/dnsmasq.d/conf/hosts_fq.conf" >> /tmp/tmp_dnsmasq.conf >/dev/null
-	cat /tmp/tmp_dnsmasq.conf | sed -E -e "/#/d" >> /etc/storage/dnsmasq/dnsmasq.conf >/dev/null 2>&1; sleep 3
+	cat /tmp/tmp_dnsmasq.conf | sed -E -e "/#/d" >> /etc/storage/dnsmasq/dnsmasq.conf; sleep 3
 	rm /tmp/tmp_dnsmasq.conf
 fi
 
