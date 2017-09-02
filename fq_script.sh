@@ -86,7 +86,7 @@ log-async=50
 #min-cache-ttl=1800
 # 指定服务器'域名''地址'文件夹
 conf-dir=/etc/storage/dnsmasq.d/conf
-# conf-file=/etc/storage/dnsmasq.d/conf/hosts_fq.conf" >> /tmp/tmp_dnsmasq.conf >/dev/null
+# conf-file=/etc/storage/dnsmasq.d/conf/hosts_fq.conf" >> /tmp/tmp_dnsmasq.conf
 	cat /tmp/tmp_dnsmasq.conf | sed -E -e "/#/d" >> /etc/storage/dnsmasq/dnsmasq.conf; sleep 3
 	rm /tmp/tmp_dnsmasq.conf
 fi
@@ -104,7 +104,7 @@ if [ -f "/etc/storage/post_iptables_script.sh" ]; then
 	sed -i '/restart_dhcpd/d' /etc/storage/post_iptables_script.sh
 	sed -i '$a cp -f /etc/storage/dnsmasq.d/resolv.conf /tmp/resolv.conf' /etc/storage/post_iptables_script.sh
 	sed -i '$a sed -i "/#/d" /tmp/resolv.conf;mv -f /tmp/resolv.conf /etc/resolv.conf' /etc/storage/post_iptables_script.sh
-	sed -i '$a restart_dhcpd >/dev/null 2>&1' /etc/storage/post_iptables_script.sh
+	sed -i '$a restart_dhcpd' /etc/storage/post_iptables_script.sh
 fi
 
 if [ -f "/etc/storage/dnsmasq.d/fq_update.sh" ]; then
