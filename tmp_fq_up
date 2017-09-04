@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse    2017-08-31
+# Compile:by-lanse    2017-09-04
 LOGTIME=$(date "+%m-%d %H:%M:%S")
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
@@ -8,8 +8,7 @@ echo -e "\e[1;36m FQ 翻墙规则开始下载... \e[0m\n"
 [ -f /tmp/fq ] && rm -rf /tmp/fq
 
 # 下载 FQ 组合规则
-wget --no-check-certificate https://raw.githubusercontent.com/896660689/OS/master/FQ -qO \
-/tmp/fq.conf && sleep 2 && chmod +x /tmp/fq.conf && . /tmp/fq.conf
+wget --no-check-certificate -t 20 -T 60 -qO /tmp/fq.conf https://raw.githubusercontent.com/896660689/OS/master/FQ && sleep 2 && chmod +x /tmp/fq.conf && . /tmp/fq.conf
 
 sleep 2
 echo -e "\e[1;36m 导入自定义规则 \e[0m\n"
