@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse    2018-09-01
+# Compile:by-lanse    2018-09-04
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
 
@@ -14,7 +14,7 @@ cp -f /tmp/ad_script.sh /etc/storage/dnsmasq.d/ad_script.sh
 
 if [ -d "/etc/storage/dnsmasq.d" ]; then
 	echo -e "\e[1;33m 创建更新脚本 \e[0m\n"
-	wget --no-check-certificate -t 30 -T 60 https://raw.githubusercontent.com/896660689/OS/master/ad_update.sh -qO /tmp/ad_update.sh
+	wget --no-check-certificate -t 20 -T 60 -qO /tmp/ad_update.sh https://raw.githubusercontent.com/896660689/OS/master/ad_update.sh
 	mv -f /tmp/ad_update.sh /etc/storage/dnsmasq.d/ad_update.sh && sleep 3
 	chmod 755 /etc/storage/dnsmasq.d/ad_update.sh
 fi
