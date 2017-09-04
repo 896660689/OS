@@ -20,6 +20,6 @@ fi
 if [ -x "/etc/storage/dnsmasq.d/fq_update.sh" ]; then
 	[ -f /tmp/tmp_fq_up ] && rm -f /tmp/tmp_fq_up
 	# 准备翻墙 FQ 文件
-	wget --no-check-certificate -t 10 -T 30 -O /tmp/tmp_fq_up https://raw.githubusercontent.com/896660689/OS/master/tmp_fq_up && chmod 755 /tmp/tmp_fq_up && . /tmp/tmp_fq_up
+	wget --no-check-certificate -t 10 -T 30 -qO /tmp/tmp_fq_up https://raw.githubusercontent.com/896660689/OS/master/tmp_fq_up && chmod 755 /tmp/tmp_fq_up && . /tmp/tmp_fq_up
 fi
 sleep 3 && exit 0
