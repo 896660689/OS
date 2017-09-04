@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse    2018-08-31
+# Compile:by-lanse    2018-09-04
 LOGTIME=$(date "+%m-%d %H:%M:%S")
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 
@@ -12,10 +12,10 @@ wget --no-check-certificate -t 15 -T 50 -O /tmp/Ad0.conf http://c.nnjsx.cn/GL/dn
 
 
 echo -e "\033[41;37m 组合下载时间较长.请耐心等待……\033[0m\n"
-wget --no-check-certificate -t 20 -T 60 -qO /tmp/ad.conf https://raw.githubusercontent.com/896660689/OS/master/AD  && sleep 2 && chmod +x /tmp/ad.conf && . /tmp/ad.conf
+wget --no-check-certificate -t 20 -T 60 -qO /tmp/ad.conf https://raw.githubusercontent.com/896660689/OS/master/AD && sleep 2 && chmod +x /tmp/ad.conf && . /tmp/ad.conf
 
 # 下载 '网络收集' HOSTS 规则
-wget --no-check-certificate -t 20 -T 60 -qO /tmp/abd.conf https://raw.githubusercontent.com/896660689/OS/master/ABD  && sleep 2 && chmod +x /tmp/abd.conf && . /tmp/abd.conf
+wget --no-check-certificate -t 20 -T 60 -qO /tmp/abd.conf https://raw.githubusercontent.com/896660689/OS/master/ABD && sleep 2 && chmod +x /tmp/abd.conf && . /tmp/abd.conf
 
 sleep 2
 echo -e "\e[1;36m 导入自定义规则 \e[0m\n"
