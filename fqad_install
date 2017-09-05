@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse	2017-09-01
+# Compile:by-lanse	2017-09-05
 
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
@@ -58,7 +58,7 @@ if [ "$Function_options" == "3" ]; then
 		fi
 	fi
 
-	if [ -d "/etc/storage/dnsmasq.d/hosts" ]; then
+	if [ -d "/etc/storage/dnsmasq.d/conf" ]; then
 		echo -e "\e[1;31m 删除残留文件夹以及配置 \e[0m\n" && sleep 2
 		rm -rf /etc/storage/dnsmasq.d/resolv.conf
 		rm -rf /etc/storage/dnsmasq.d/userlist
