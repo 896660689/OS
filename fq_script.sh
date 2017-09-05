@@ -35,8 +35,8 @@ if [ -d "/etc/storage/dnsmasq.d" ]; then
 	chmod 755 /etc/storage/dnsmasq.d/fq_update.sh
 fi
 
-echo -e "\e[1;36m 创建 DNS 配置文件 \e[0m\n"
 if [ ! -f "/etc/storage/dnsmasq.d/resolv.conf" ]; then
+	echo -e "\e[1;36m 创建 DNS 配置文件 \e[0m\n"
 	cat > /etc/storage/dnsmasq.d/resolv.conf <<EOF
 ## DNS解析服务器设置
 nameserver 127.0.0.1
@@ -47,8 +47,8 @@ nameserver 114.114.114.114
 nameserver 119.29.29.29
 nameserver 8.8.4.4
 EOF
+	chmod 644 /etc/storage/dnsmasq.d/resolv.conf && chmod 644 /etc/resolv.conf
 fi
-chmod 644 /etc/storage/dnsmasq.d/resolv.conf && chmod 644 /etc/resolv.conf
 cp -f /etc/storage/dnsmasq.d/resolv.conf /tmp/resolv.conf
 sed -i "/#/d" /tmp/resolv.conf;mv -f /tmp/resolv.conf /etc/resolv.conf
 
