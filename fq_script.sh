@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse	2017-09-01
+# Compile:by-lanse	2017-09-05
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
 
@@ -16,6 +16,8 @@ fi
 if [ ! -f "/etc/storage/dnsmasq.d/resolv_bak" ]; then
 	echo -e "\e[1;36m 备份 'DNS' 文件 \e[0m\n"
 	cp -f /etc/resolv.conf /etc/storage/dnsmasq.d/resolv_bak && chmod 644 /etc/storage/dnsmasq.d/resolv_bak
+else
+	echo -e "\e[1;36m 'DNS' 备份文件已存在 \e[0m\n"
 fi
 
 if [ ! -f "/etc/storage/dnsmasq.d/userlist" ]; then
