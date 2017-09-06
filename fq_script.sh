@@ -70,10 +70,7 @@ if [ ! -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
 else
 	grep "conf-dir" /etc/storage/dnsmasq/dnsmasq.conf
 	if [ $? -eq 0 ]; then
-		sed -i '/127.0.0.1/d' /etc/storage/dnsmasq/dnsmasq.conf
-		sed -i '/log/d' /etc/storage/dnsmasq/dnsmasq.conf
-		sed -i '/1800/d' /etc/storage/dnsmasq/dnsmasq.conf
-		sed -i '/conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/127.0.0.1/d; /log/d; /1800/d; /conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
 	else
 		echo -e "\033[41;37m 开始写入启动代码 \e[0m\n"
 		echo "listen-address=${route_vlan},127.0.0.1
@@ -95,8 +92,7 @@ fi
 
 if [ -f "/etc/storage/post_iptables_script.sh" ]; then
 	echo -e "\e[1;36m 添加防火墙端口转发规则 \e[0m\n"
-	sed -i '/DNAT/d' /etc/storage/post_iptables_script.sh
-	sed -i '/iptables-save/d' /etc/storage/post_iptables_script.sh
+	sed -i '/DNAT/d; /iptables-save/d' /etc/storage/post_iptables_script.sh
 	sed -i '$a /bin/iptables-save' /etc/storage/post_iptables_script.sh
 fi
 echo "/bin/iptables -t nat -A PREROUTING -p tcp --dport 53 -j DNAT --to $route_vlan" >> /etc/storage/post_iptables_script.sh
