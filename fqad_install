@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse	2017-09-05
+# Compile:by-lanse	2017-09-06
 
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
@@ -15,7 +15,7 @@ echo -e "\e[1;33m >	2. 更新 \e[1;33mpadavan 科学上网FQ版\e[0m\n"
 
 echo -e "\e[1;31m >	3. 卸载 \e[1;33mpadavan 科学上网FQ版\e[0m\n"
 
-echo -e "\e[1;36m >	4. 安装 \e[1;362mpadavan \033[41;37m纯净去AD版[可配FQ可辅SS]\e[0m\n"
+echo -e "\e[1;36m >	4. 安装 \e[1;362mpadavan \033[41;37m纯净去AD版[可配FQ]\e[0m\n"
 
 echo -e "\e[1;36m >	5. 更新 \e[1;36mpadavan 纯净去AD版\e[0m\n"
 
