@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse	2017-09-05
+# Compile:by-lanse	2017-09-06
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
 
@@ -102,11 +102,10 @@ fi
 echo "/bin/iptables -t nat -A PREROUTING -p tcp --dport 53 -j DNAT --to $route_vlan" >> /etc/storage/post_iptables_script.sh
 echo "/bin/iptables -t nat -A PREROUTING -p udp --dport 53 -j DNAT --to $route_vlan" >> /etc/storage/post_iptables_script.sh
 if [ -f "/etc/storage/post_iptables_script.sh" ]; then
-	sed -i '/resolv.conf/d' /etc/storage/post_iptables_script.sh
-	sed -i '/restart_dhcpd/d' /etc/storage/post_iptables_script.sh
+	sed -i '/resolv.conf/d; /restart_dhcpd/d' /etc/storage/post_iptables_script.sh
 	sed -i '$a cp -f /etc/storage/dnsmasq.d/resolv.conf /tmp/resolv.conf' /etc/storage/post_iptables_script.sh
 	sed -i '$a sed -i "/#/d" /tmp/resolv.conf;mv -f /tmp/resolv.conf /etc/resolv.conf' /etc/storage/post_iptables_script.sh
-	sed -i '$a restart_dhcpd' /etc/storage/post_iptables_script.sh
+	sed -i '$a killall -HUP dnsmasq && restart_dhcpd' /etc/storage/post_iptables_script.sh
 fi
 
 if [ -f "/etc/storage/dnsmasq.d/fq_update.sh" ]; then
