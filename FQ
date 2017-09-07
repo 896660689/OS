@@ -19,19 +19,19 @@ done
 wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/sy618/hosts/master/dnsmasq/dnsfq" \
 | sed -E -e "/# /d; /\#a/d; /^$/d; /★/d; /^#/d; /^$/d" >> ${TMP_FQ2}
 
-wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc" \
-| sed -E -e "/#/d" >> ${TMP_FQ3}
+#wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc" \
+#| sed -E -e "/#/d" >> ${TMP_FQ3}
 
 #sed -i "/youtube/d; /tumblr/d" ${TMP_FQ2}
-sed -i "/tumblr/d" ${TMP_FQ2}
+#sed -i "/tumblr/d" ${TMP_FQ2}
 
 #wget --no-check-certificate -t 20 -T 60 -O- "http://idannywu.com/dannywugooglehosts/noadhosts.txt" \
 #| awk '{if(/^#/||/^$/) {print $0} else {print "address=/"$2"/"$1"\t"$3,"\n""address=/"$2"/#"}}' \
 #| sed -E -e "/#/d" -e "/^$/d" -e "/::/d" -e "/localhos/d" >> ${TMP_FQ4}
 
 sleep 2
-cat ${TMP_FQ3} ${TMP_FQ2} ${TMP_FQ} > ${FQ}
+cat ${TMP_FQ2} ${TMP_FQ} > ${FQ}
 
 echo -e "\033[45;37m 翻网规则下载完成 \033[0m\n"
 # 删除临时缓存
-rm -rf ${TMP_FQ2} ${TMP_FQ3} ${TMP_FQ} >/dev/null 2>&1
+rm -rf ${TMP_FQ2} ${TMP_FQ} >/dev/null 2>&1
