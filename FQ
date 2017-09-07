@@ -10,8 +10,7 @@ FQ=/tmp/fq
 [ -f ${FQ} ] && rm -rf ${FQ};[ -f ${TMP_FQ2} ] && rm -rf ${TMP_FQ2};[ -f ${TMP_FQ3} ] && rm -rf ${TMP_FQ3}
 for URL in \
 	"https://raw.githubusercontent.com/sy618/hosts/master/data/yahoo" \
-	"https://raw.githubusercontent.com/sy618/hosts/master/data/tumblr" \
-	"http://idannywu.com/dannywugooglehosts/noadhosts.txt"
+	"https://raw.githubusercontent.com/sy618/hosts/master/data/tumblr"
 do
 	wget --no-check-certificate -t 15 -T 50 -O- "${URL}" \
 	| awk '$1 ~ /^[0-9]/ {printf("address=/%s/%s\n", $2,$1)}' >> ${TMP_FQ}
@@ -23,7 +22,7 @@ wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/s
 wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc" \
 | sed -E -e "/#/d" >> ${TMP_FQ3}
 
-sed -i "/youtube/d" ${TMP_FQ}
+sed -i "/youtube/d" ${TMP_FQ2}
 #sed -i "/youtube/d; /tumblr/d" ${TMP_FQ2}
 
 #wget --no-check-certificate -t 20 -T 60 -O- "http://idannywu.com/dannywugooglehosts/noadhosts.txt" \
