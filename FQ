@@ -9,7 +9,7 @@ FQ=/tmp/fq
 [ -f ${FQ} ] && rm -rf ${FQ};[ -f ${TMP_FQ2} ] && rm -rf ${TMP_FQ2};[ -f ${TMP_FQ} ] && rm -rf ${TMP_FQ}
 
 wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc2017" \
-| sed -E -e "/#/d" >> ${TMP_FQ}
+| sed -e "/# /d" >> ${TMP_FQ}
 
 wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/sy618/hosts/master/dnsmasq/dnsfq" \
 |sed -n "/google/p" >> ${TMP_FQ2}
