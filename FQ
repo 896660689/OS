@@ -10,8 +10,8 @@ FQ=/tmp/fq
 wget --no-check-certificate -t 30 -T 80 -O- "https://raw.githubusercontent.com/wangchunming/2017hosts/master/hosts-pc" \
 | awk '$1 ~ /^[0-9]/ {printf("address=/%s/%s\n", $2,$1)}' > ${TMP_FQ}
 
-wget --no-check-certificatewget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc" \
-| sed -E -e "/#/d" >> ${TMP_FQ2}
+wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/sy618/hosts/master/data/tumblr" \
+| awk '$1 ~ /^[0-9]/ {printf("address=/%s/%s\n", $2,$1)}' >> ${TMP_FQ2}
 
 sed -i "/tumblr/d" ${TMP_FQ}
 
