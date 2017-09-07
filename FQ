@@ -1,0 +1,22 @@
+#!/bin/sh
+# Compile:by-lanse    2018-08-28
+
+echo -e "\e[1;36m 下载 Fq 翻网规则 \e[0m\n"
+TMP_FQ=/tmp/tmp_fq
+TMP_FQ2=/tmp/tmp_fq2
+FQ=/tmp/fq
+
+[ -f ${FQ} ] && rm -rf ${FQ};[ -f ${TMP_FQ2} ] && rm -rf ${TMP_FQ2};[ -f ${TMP_FQ} ] && rm -rf ${TMP_FQ}
+wget --no-check-certificate -t 30 -T 80 -O- "https://raw.githubusercontent.com/wangchunming/2017hosts/master/hosts-pc" \
+| awk '$1 ~ /^[0-9]/ {printf("address=/%s/%s\n", $2,$1)}' > ${TMP_FQ}
+
+wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/sy618/hosts/master/data/tumblr" \
+| awk '$1 ~ /^[0-9]/ {printf("address=/%s/%s\n", $2,$1)}' >> ${TMP_FQ2}
+
+sed -i "/tumblr/d" ${TMP_FQ}
+
+cat ${TMP_FQ} ${TMP_FQ2} > ${FQ}
+
+echo -e "\033[45;37m 翻网规则下载完成 \033[0m\n"
+# 删除临时缓存
+rm -rf ${TMP_FQ2} ${TMP_FQ} >/dev/null 2>&1
