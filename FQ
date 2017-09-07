@@ -11,8 +11,8 @@ FQ=/tmp/fq
 for URL in \
 	"https://raw.githubusercontent.com/sy618/hosts/master/data/yahoo" \
 	"https://raw.githubusercontent.com/sy618/hosts/master/data/tumblr"
-	"http://idannywu.com/dannywugooglehosts/noadhosts.txt"		
-  do
+	"http://idannywu.com/dannywugooglehosts/noadhosts.txt"
+do
 	wget --no-check-certificate -t 15 -T 50 -O- "${URL}" \
 	| awk '$1 ~ /^[0-9]/ {printf("address=/%s/%s\n", $2,$1)}' >> ${TMP_FQ}
 done
