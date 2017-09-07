@@ -10,7 +10,8 @@ FQ=/tmp/fq
 [ -f ${FQ} ] && rm -rf ${FQ};[ -f ${TMP_FQ2} ] && rm -rf ${TMP_FQ2};[ -f ${TMP_FQ3} ] && rm -rf ${TMP_FQ3}
 for URL in \
 	"https://raw.githubusercontent.com/sy618/hosts/master/data/yahoo" \
-	"https://raw.githubusercontent.com/sy618/hosts/master/data/tumblr"
+	"https://raw.githubusercontent.com/sy618/hosts/master/data/tumblr" \
+	"http://idannywu.com/dannywugooglehosts/noadhosts.txt"
 do
 	wget --no-check-certificate -t 15 -T 50 -O- "${URL}" \
 	| awk '$1 ~ /^[0-9]/ {printf("address=/%s/%s\n", $2,$1)}' >> ${TMP_FQ}
