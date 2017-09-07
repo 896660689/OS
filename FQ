@@ -23,7 +23,7 @@ wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/s
 #wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc" \
 #| sed -E -e "/#/d" >> ${TMP_FQ3}
 
-sed -i "/youtube/d" ${TMP_FQ}
+sed -i "/youtube/d" ${TMP_FQ2}
 #sed -i "/youtube/d; /tumblr/d" ${TMP_FQ2}
 
 #wget --no-check-certificate -t 20 -T 60 -O- "http://idannywu.com/dannywugooglehosts/noadhosts.txt" \
