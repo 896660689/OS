@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse    2018-08-28
+# Compile:by-lanse    2017-09-09
 
 echo -e "\e[1;36m 下载 Fq 翻网规则 \e[0m\n"
 TMP_FQ=/tmp/tmp_fq
@@ -7,10 +7,10 @@ TMP_FQ2=/tmp/tmp_fq2
 FQ=/tmp/fq
 
 [ -f ${FQ} ] && rm -rf ${FQ};[ -f ${TMP_FQ2} ] && rm -rf ${TMP_FQ2};[ -f ${TMP_FQ} ] && rm -rf ${TMP_FQ}
-#wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/tumblr" >> ${TMP_FQ2}
+wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/tumblr" >> ${TMP_FQ2}
 
-wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc2017" \
-| sed -e "/# /d" >> ${TMP_FQ2}
+#wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/896660689/OS/master/hs_pc2017" \
+#| sed -e "/# /d" >> ${TMP_FQ2}
 
 #wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/sy618/hosts/master/dnsmasq/dnsfq" \
 #|sed -n "/google/p" >> ${TMP_FQ2}
@@ -19,7 +19,7 @@ wget --no-check-certificate -t 15 -T 50 -O- "https://raw.githubusercontent.com/8
 wget --no-check-certificate -t 30 -T 80 -O- "https://raw.githubusercontent.com/wangchunming/2017hosts/master/hosts-pc" \
 | awk '$1 ~ /^[0-9]/ {printf("address=/%s/%s\n", $2,$1)}' > ${TMP_FQ}
 
-sed -i "/tumblr/d" ${TMP_FQ}
+sed -i "/tumblr/d" ${TMP_FQ} && sleep 2
 
 cat ${TMP_FQ2} ${TMP_FQ} > ${FQ}
 
