@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse	2017-09-06
+# Compile:by-lanse	2017-09-08
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
 
@@ -70,7 +70,7 @@ if [ ! -f "/etc/storage/dnsmasq/dnsmasq.conf" ]; then
 else
 	grep "conf-dir" /etc/storage/dnsmasq/dnsmasq.conf
 	if [ $? -eq 0 ]; then
-		sed -i '/127.0.0.1/d; /log/d; /1800/d; /conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
+		sed -i '/127.0.0.1/d; /log/d; /1800/d; /bogus-nxdomain/d; /conf-dir/d' /etc/storage/dnsmasq/dnsmasq.conf
 	else
 		echo -e "\033[41;37m 开始写入启动代码 \e[0m\n"
 		echo "listen-address=${route_vlan},127.0.0.1
@@ -84,7 +84,28 @@ log-async=50
 #min-cache-ttl=1800
 # 指定服务器'域名''地址'文件夹
 conf-dir=/etc/storage/dnsmasq.d/conf
-# conf-file=/etc/storage/dnsmasq.d/conf/hosts_fq.conf" >> /tmp/tmp_dnsmasq.conf
+# conf-file=/etc/storage/dnsmasq.d/conf/hosts_fq.conf
+#屏蔽运营商劫持IP
+# hijack
+bogus-nxdomain=120.197.89.239
+bogus-nxdomain=211.139.178.49
+bogus-nxdomain=221.179.46.190
+bogus-nxdomain=221.179.46.193
+bogus-nxdomain=221.179.46.194
+bogus-nxdomain=60.19.29.21
+bogus-nxdomain=60.19.29.24
+bogus-nxdomain=61.174.50.168
+# AD IP
+bogus-nxdomain=47.89.59.182
+bogus-nxdomain=106.75.65.90
+bogus-nxdomain=114.55.123.44
+bogus-nxdomain=122.225.103.120
+bogus-nxdomain=123.59.78.229
+bogus-nxdomain=139.224.26.92
+bogus-nxdomain=222.186.61.97
+bogus-nxdomain=222.187.226.96
+bogus-nxdomain=23.235.156.167
+bogus-nxdomain=101.201.29.182" >> /tmp/tmp_dnsmasq.conf
 		cat /tmp/tmp_dnsmasq.conf | sed -E -e "/#/d" >> /etc/storage/dnsmasq/dnsmasq.conf;sleep 3
 		rm /tmp/tmp_dnsmasq.conf
 	fi
