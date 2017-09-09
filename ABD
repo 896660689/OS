@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse    2018-08-31
+# Compile:by-lanse    2017-09-09
 
 echo -e "\e[1;36m 下载 '网络收集' HOSTS 规则 \e[0m\n"
 TMP_ABD=/tmp/tmp_abd
@@ -9,23 +9,23 @@ TMP_ABD4=/tmp/tmp_abd4
 ABD=/tmp/abd
 
 [ -f ${ABD} ] && rm -rf ${ABD};[ -f ${TMP_ABD2} ] && rm -rf ${TMP_ABD2};[ -f ${TMP_ABD3} ] && rm -rf ${TMP_ABD3};[ -f ${TMP_ABD4} ] && rm -rf ${TMP_ABD4}
-#for URL in \
-#	"http://77l5b4.com1.z0.glb.clouddn.com/hosts.txt"
-#do
-#	wget -t 15 -T 50 -c --no-check-certificate -O- "${URL}" \
-#	| sed -E -e "s/#.*$//; /#/d; /^$/d; /::/d; /localhos/d; /@/d; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_ABD2}
-#done
+for URL in \
+	"http://77l5b4.com1.z0.glb.clouddn.com/hosts.txt"
+do
+	wget -t 15 -T 50 -c --no-check-certificate -O- "${URL}" \
+	| sed -E -e "s/#.*$//; /#/d; /^$/d; /::/d; /localhos/d; /@/d; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_ABD2}
+done
 
 wget --no-check-certificate -t 20 -T 60 -O- https://raw.githubusercontent.com/vokins/yhosts/master/dnsmasq/union.conf \
 | awk '{if($0!=line)print; line=$0}' | sed -E -e "s/address=\/./127.0.0.1\ /; s/0.0.0.0$//; /#/d; s/.$//" >> ${TMP_ABD3}
 
 #wget --no-check-certificate -t 20 -T 60 -O- https://easylist-downloads.adblockplus.org/easylistchina.txt \
 #| grep ^\|\|[^\*]*\^$ | sed -e "s:||:127.0.0.1 :"  -e "s/.$//" >> ${TMP_ABD4}
-#echo
-wget --no-check-certificate -t 20 -T 60 -O- https://raw.githubusercontent.com/xinggsf/Adblock-Plus-Rule/master/ABP-FX.txt \
-| grep ^\|\|[^\*]*\^$ | sed -e "s:||:127.0.0.1 :"  -e "s/.$//" >> ${TMP_ABD2}
 
-sleep 2
+#wget --no-check-certificate -t 20 -T 60 -O- https://raw.githubusercontent.com/xinggsf/Adblock-Plus-Rule/master/ABP-FX.txt \
+#| grep ^\|\|[^\*]*\^$ | sed -e "s:||:127.0.0.1 :"  -e "s/.$//" >> ${TMP_ABD2}
+
+#sleep 2
 cat ${TMP_ABD2} ${TMP_ABD3} > ${ABD}
 #sort -n ${TMP_ABD} |uniq >> ${ABD}
 
