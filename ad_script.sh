@@ -77,6 +77,7 @@ if [ ! -f "/etc/storage/dnsmasq.d/whitelist" ]; then
 # 请将误杀的网址添加到在下面白名单
 # 每行输入相应准确的网址或关键词即可:
 m.baidu.com
+mail.qq.com
 github.com
 raw.githubusercontent.com
 my.k2
