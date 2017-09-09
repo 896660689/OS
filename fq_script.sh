@@ -25,7 +25,7 @@ if [ ! -f "/etc/storage/dnsmasq.d/userlist" ]; then
 	cat > "/etc/storage/dnsmasq.d/userlist" <<EOF
 # 国内dns优化
 address=/email.163.com/223.6.6.6
-address=/mail.qq.com/119.29.29.29
+#address=/mail.qq.com/119.29.29.29
 EOF
 fi
 chmod 644 /etc/storage/dnsmasq.d/userlist
