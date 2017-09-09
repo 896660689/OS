@@ -11,17 +11,17 @@ for URL in \
 	"http://c.nnjsx.cn/GL/dnsmasq/update/adblock/yhosts.txt"
 do
 	wget -t 15 -T 50 --no-check-certificate -O- "${URL}" \
-	| sed -E -e "s/#.*$//; /^$/d; /::/d; /localhos/d; s/0.0.0.0/127.0.0.1/; s/[[:space:]][[:space:]]*/ /g" >> ${AD}
+	| sed -E -e "s/#.*$//; /^$/d; /::/d; /localhos/d; s/0.0.0.0/127.0.0.1/; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD}
 done
 #"http://winhelp2002.mvps.org/hosts.txt" \
 
-#wget -t 15 -T 50 --no-check-certificate -O- https://raw.githubusercontent.com/vokins/yhosts/master/hosts \
-#| sed -E -e "s/#.*$//; /^$/d; /::/d; /localhos/d; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD2}
+wget -t 15 -T 50 --no-check-certificate -O- https://raw.githubusercontent.com/vokins/yhosts/master/hosts \
+| sed -E -e "s/#.*$//; /^$/d; /::/d; /localhos/d; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD2}
 
-#cat ${TMP_AD} ${TMP_AD2} > ${AD}
+cat ${TMP_AD} ${TMP_AD2} > ${AD}
 #sort -n ${TMP_AD} |uniq >> ${AD}
 
 sleep 2
 echo -e "\033[45;37m 'Hosts_Ad' 规则下载完成 \033[0m\n"
 # 删除临时缓存
-#rm -rf ${TMP_AD} ${TMP_AD2} >/dev/null 2>&1
+rm -rf ${TMP_AD} ${TMP_AD2} >/dev/null 2>&1
