@@ -46,7 +46,6 @@ nameserver 127.0.0.1
 nameserver 223.6.6.6
 nameserver 176.103.130.131
 nameserver 114.114.114.114
-nameserver 119.29.29.29
 nameserver 8.8.4.4
 EOF
 	chmod 644 /etc/storage/dnsmasq.d/resolv.conf && chmod 644 /etc/resolv.conf
