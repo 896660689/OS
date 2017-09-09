@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse    2018-09-04
+# Compile:by-lanse    2017-09-09
 LOGTIME=$(date "+%m-%d %H:%M:%S")
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 
@@ -7,9 +7,9 @@ echo -e "\e[1;36m HOSTS 去广告规则开始下载... \e[0m\n"
 [ -f /tmp/ad ] && rm -rf /tmp/ad;[ -f /tmp/abd ] && rm -rf /tmp/abd
 # 下载 HOSTS 组合规则
 
-echo -e "\e[1;36m 下载 adblock 规则 \e[0m\n"
-wget --no-check-certificate -t 15 -T 50 -O- http://c.nnjsx.cn/GL/dnsmasq/update/adblock/easylistchina.txt \
-| awk '{if($0!=line)print; line=$0}' |sed -E -e "s/127.0.0.1$//" -e "s/address=\/./127.0.0.1\ /" -e "/#/d" -e "s/.$//" >> /tmp/Ad0.conf
+#echo -e "\e[1;36m 下载 adblock 规则 \e[0m\n"
+#wget --no-check-certificate -t 15 -T 50 -O- http://c.nnjsx.cn/GL/dnsmasq/update/adblock/easylistchina.txt \
+#| awk '{if($0!=line)print; line=$0}' |sed -E -e "s/127.0.0.1$//" -e "s/address=\/./127.0.0.1\ /" -e "/#/d" -e "s/.$//" >> /tmp/Ad0.conf
 
 echo -e "\033[41;37m 组合下载时间较长.请耐心等待……\033[0m\n"
 wget --no-check-certificate -t 20 -T 60 -qO /tmp/ad.conf https://raw.githubusercontent.com/896660689/OS/master/AD && sleep 2 && chmod +x /tmp/ad.conf && . /tmp/ad.conf
@@ -24,12 +24,12 @@ sed -i "/#/d" /tmp/blacklist
 sed -i 's/^/127.0.0.1 &/g' /tmp/blacklist
 
 # 合并 hosts 缓存
-#cat /tmp/blacklist /tmp/ad > /tmp/hosts_ad
-cat /tmp/blacklist /tmp/Ad0.conf /tmp/ad /tmp/abd > /tmp/hosts_ad
+cat /tmp/blacklist /tmp/ad > /tmp/hosts_ad
+#cat /tmp/blacklist /tmp/Ad0.conf /tmp/ad /tmp/abd > /tmp/hosts_ad
 
 # 删除 hosts 缓存
 rm -rf /tmp/blacklist
-rm -rf /tmp/Ad0.conf
+#rm -rf /tmp/Ad0.conf
 rm -rf /tmp/ad
 rm -rf /tmp/ad.conf
 rm -rf /tmp/abd
