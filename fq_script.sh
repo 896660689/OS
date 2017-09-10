@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compile:by-lanse	2017-09-08
+# Compile:by-lanse	2017-09-10
 route_vlan=`/sbin/ifconfig br0 |grep "inet addr"| cut -f 2 -d ":"|cut -f 1 -d " " `
 username=`nvram get http_username`
 
@@ -25,7 +25,7 @@ if [ ! -f "/etc/storage/dnsmasq.d/userlist" ]; then
 	cat > "/etc/storage/dnsmasq.d/userlist" <<EOF
 # 国内dns优化
 address=/email.163.com/223.6.6.6
-#address=/mail.qq.com/119.29.29.29
+#address=/mail.qq.com/114.114.114.114
 EOF
 fi
 chmod 644 /etc/storage/dnsmasq.d/userlist
