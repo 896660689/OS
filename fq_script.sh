@@ -56,7 +56,7 @@ sed -i "/#/d" /tmp/resolv.conf;mv -f /tmp/resolv.conf /etc/resolv.conf
 if [ -f "/etc/storage/cron/crontabs/$username" ]; then
 	echo -e "\e[1;33m 添加定时计划更新任务 \e[0m\n"
 	sed -i '/fq_update.sh/d' /etc/storage/cron/crontabs/$username
-	sed -i '$a 45 05 * * 2,4,6 sh /etc/storage/dnsmasq.d/fq_update.sh' /etc/storage/cron/crontabs/$username
+	sed -i '$a 40 5 * * * sh /etc/storage/dnsmasq.d/fq_update.sh &' /etc/storage/cron/crontabs/$username
 	sleep 2 && killall crond;/usr/sbin/crond
 fi
 
