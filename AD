@@ -9,12 +9,12 @@ AD=/tmp/ad
 
 [ -f ${AD} ] && rm -rf ${AD};[ -f ${TMP_AD2} ] && rm -rf ${TMP_AD2};[ -f ${TMP_AD4} ] && rm -rf ${TMP_AD4}
 for URL in \
+	"http://winhelp2002.mvps.org/hosts.txt" \
 	"http://c.nnjsx.cn/GL/dnsmasq/update/adblock/yhosts.txt"
 do
 	wget -t 15 -T 50 --no-check-certificate -O- "${URL}" \
 	| sed -E -e "s/#.*$//; /^$/d; /::/d; /localhos/d; s/0.0.0.0/127.0.0.1/; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD}
 done
-#"http://winhelp2002.mvps.org/hosts.txt" \
 
 wget -t 15 -T 50 --no-check-certificate -O- https://raw.githubusercontent.com/vokins/yhosts/master/hosts \
 | sed -E -e "s/#.*$//; /^$/d; /::/d; /localhos/d; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD2}
