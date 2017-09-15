@@ -4,9 +4,10 @@
 echo -e "\e[1;36m 下载 'winhelp200''adblock' 屏蔽广告规则 \e[0m\n"
 TMP_AD=/tmp/tmp_ad
 TMP_AD2=/tmp/tmp_ad2
+TMP_AD4=/tmp/tmp_ad4
 AD=/tmp/ad
 
-[ -f ${AD} ] && rm -rf ${AD};[ -f ${TMP_AD2} ] && rm -rf ${TMP_AD2}
+[ -f ${AD} ] && rm -rf ${AD};[ -f ${TMP_AD2} ] && rm -rf ${TMP_AD2};[ -f ${TMP_AD4} ] && rm -rf ${TMP_AD4}
 for URL in \
 	"http://c.nnjsx.cn/GL/dnsmasq/update/adblock/yhosts.txt"
 do
@@ -18,10 +19,12 @@ done
 wget -t 15 -T 50 --no-check-certificate -O- https://raw.githubusercontent.com/vokins/yhosts/master/hosts \
 | sed -E -e "s/#.*$//; /^$/d; /::/d; /localhos/d; s/[[:space:]][[:space:]]*/ /g" >> ${TMP_AD2}
 
-cat ${TMP_AD} ${TMP_AD2} > ${AD}
+wget -t 15 -T 50 --no-check-certificate -O- https://raw.githubusercontent.com/896660689/OS/master/YKAD >> ${TMP_AD4}
+
+cat ${TMP_AD} ${TMP_AD2} ${TMP_AD4} > ${AD}
 #sort -n ${TMP_AD} |uniq >> ${AD}
 
 sleep 2
 echo -e "\033[45;37m 'Hosts_Ad' 规则下载完成 \033[0m\n"
 # 删除临时缓存
-rm -rf ${TMP_AD} ${TMP_AD2} >/dev/null 2>&1
+rm -rf ${TMP_AD} ${TMP_AD2} ${TMP_AD4} >/dev/null 2>&1
