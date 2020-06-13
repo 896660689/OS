@@ -1,0 +1,20 @@
+Power by V2Ray 4.21.3 (V2Fly, a community-driven edition of V2Ray.) Custom
+A unified platform for anti-censorship.
+
+----------------------------------------------------------------------
+
+
+#stop v2ray:
+sh /tmp/v2ray/stop.sh
+
+#gfwlist mode:
+
+FIRST:
+edit & copy config-gfw.json to /etc/storage/V2Ray/
+
+
+USE 5353 DNS FOR GFWLIST
+conf-dir=/etc/storage/v2ray/, *.hosts
+
+
+----------------------------------------------------------------------
