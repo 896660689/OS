@@ -1,0 +1,33 @@
+{
+  "log": {"loglevel": "none"},
+  "inbounds": [{
+    "port": 1053,
+    "protocol": "dokodemo-door",
+    "settings": {"network": "udp", "address": "8.8.8.8", "port": 53}
+  }, {
+    "port": 12345,
+    "protocol": "dokodemo-door",
+    "streamSettings": {"sockopt": {"tproxy": "tproxy"}},
+    "settings": {"network": "tcp,udp", "followRedirect": true}
+  }],
+  "outbounds": [{
+    "protocol": "vless",
+    "settings": {
+      "vnext": [{
+        "address": "==YOUR DOMAIN==",
+        "port": 443,
+        "users": [{
+          "id": "==YOUR USER ID==",
+          "flow": "xtls-rprx-splice",
+          "encryption": "none"
+        }]
+      }]
+    },
+    "streamSettings": {
+      "sockopt": {"mark": 255, "tproxy": "tproxy"},
+      "network": "tcp",
+      "security": "xtls",
+      "xtlsSettings": {"serverName": "==YOUR DOMAIN=="}
+    }
+  }]
+}
